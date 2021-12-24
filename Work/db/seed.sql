@@ -1,12 +1,12 @@
---pre-populate database
+--pre-populates database
 USE business_db;
 
-INSERT INTO department (name, id)
-    VALUES ('Marketing', 1),
-           ('Operations', 2),
-           ('Finance', 3),
-           ('Sales', 4),
-           ('Human Resource', 5);
+INSERT INTO department (id, department_name)
+    VALUES (1, 'Marketing'),
+           (2, 'Operations'),
+           (3, 'Finance'),
+           (4, 'Sales'),
+           (5, 'Human Resource');
 
 INSERT INTO role (id, title, salary, department_id)
     VALUES (15, 'Executive', 90000, 1),
@@ -15,7 +15,7 @@ INSERT INTO role (id, title, salary, department_id)
            (18, 'Analyst', 65000, 1),
            (19, 'Representative', 60000, 1);
 
-INSERT INTO employee (first_name, last_name, role_id, manager_id) --id should auto increment
+INSERT INTO employee (first_name, last_name, role_id, manager_id)
     VALUES ('Michael', 'Scott', 16, 7),
            ('Dwight', 'Schrute', 17, 8),
            ('Pam', 'Beesly', 19, NULL),
