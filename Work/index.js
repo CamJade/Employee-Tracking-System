@@ -32,7 +32,9 @@ function startPrompt() {
             'Add a department',
             'Add a role',
             'Add an employee',
-            'Update an employee role',
+            'Delete a department',
+            'Delete a role',
+            'Delete an employee',
             'Quit'
         ]
     })
@@ -61,8 +63,14 @@ function startPrompt() {
         if (choice === 'Add an employee') {
             addEmployee();
         }
-        if (choice === 'Update an employee role') {
-            updateEmployee();
+        if (choice === 'Delete a department') {
+            deleteDepartment();
+        }
+        if (choice === 'Delete a role') {
+            deleteRole();
+        }
+        if (choice === 'Delete an employee') {
+            deleteEmployee();
         }
         if (choice === 'Quit') {
             connection.end();
@@ -220,3 +228,41 @@ function addEmployee() {
 };
 
 //bonus--delete options
+function deleteDepartment() {
+    inquirer.prompt([
+        {
+          name: "department_name",
+          type: "input",
+          message: "What Department would you like to delete?"
+        }
+    ]).then(res =>  {
+        sql.deleteDepartment(res)
+            .then
+                
+            
+                console.log(`Deleted ${res.department_name} from the database`)
+
+                startPrompt();
+    });
+};
+
+function deleteEmployee() {
+    
+    inquirer.prompt([
+        {
+          name: "employeeId",
+          type: "list",
+          message: "Enter employee's id."
+        },
+        
+        
+    ]).then(res =>  {
+        sql.deleteEmployee(res)
+            .then
+                
+            
+                console.log(`Deleted ${res.first_name} ${res.last_name} from the database`)
+
+                startPrompt();
+    });
+};

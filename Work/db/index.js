@@ -17,6 +17,15 @@ class sql {
       createEmployee(employee) {
         return this.connection.promise().query("INSERT INTO employee SET ?", employee);
       }
+      deleteDepartment(departmentId) {
+        return this.connection.promise().query(
+          "DELETE FROM department WHERE id = ?", departmentId);
+      }
+      deleteEmployee(employeeId) {
+        return this.connection.promise().query(
+          "DELETE FROM employee WHERE id = ?", employeeId
+        );
+      }
 };
 
 module.exports = new sql(connection);
