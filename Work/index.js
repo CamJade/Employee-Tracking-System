@@ -185,24 +185,38 @@ function addEmployee() {
             message: "Enter employee's last name."
         },
         {
-            name: "department_id",
+            name: "role_id",
             type: "list",
-            message: "What department does this role belong to?",
+            message: "What Role would you like to add this employee to?",
             choices: [
-                1,
-                2,
-                3,
-                4,
-                5,
+                15,
+                16,
+                17,
+                18,
+                19
             ]
-        }
+          },
+          {
+            name: "manager_id",
+            type: "list",
+            message: "What manager is this employee assigned to?",
+            choices: [
+                16,
+                17,
+                18,
+                19
+            ]
+          },
+        
     ]).then(res =>  {
-        sql.createRole(res)
+        sql.createEmployee(res)
             .then
                 
             
-                console.log(`Added ${res.title} to the database`)
+                console.log(`Added ${res.first_name} ${res.last_name} to the database under ${res.role_id} with ${res.manager_id}`)
 
                 startPrompt();
     });
 };
+
+//bonus--delete options

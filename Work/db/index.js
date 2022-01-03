@@ -14,6 +14,9 @@ class sql {
       createRole(role) {
         return this.connection.promise().query("INSERT INTO role SET ?", role);
       }
+      createEmployee(employee) {
+        return this.connection.promise().query("INSERT INTO employee SET ?", employee);
+      }
 };
 
 module.exports = new sql(connection);
