@@ -1,13 +1,18 @@
-const mysql = require('mysql2'); //connect to mysql database and perform queries
-const inquirer = require('inquirer'); //interave with user via command line
-const cTable = require('console.table'); //print mysql rows to console
-const connection = require('./db/connection');
 
+
+//connect to mysql database and perform queries
+const mysql = require('mysql2'); 
+//interave with user via command line
+const inquirer = require('inquirer'); 
+//print mysql rows to console
+const cTable = require('console.table'); 
+const connection = require('./db/connection');
+const sql = require("./db");
 
 connection.connect ((error) => {
     //if (error) throw error;
     //else 
-    console.log
+    
     console.log ('Welcome to the Employee Tracking System');
     startPrompt();
 });
@@ -111,25 +116,21 @@ function viewEmployees() {
 function addDepartment() {
     inquirer.prompt([
         {
-          name: "name",
+          name: "department_name",
           type: "input",
           message: "What Department would you like to add?"
         }
-    ]).then(function(res) {
-        connection.query(
-            "INSERT INTO department SET ? ",
-            {
-              name: res.department_name
+    ]).then(res =>  {
+        sql.createDepartment(res)
+            .then
+                
             
-            },
-            function(err) {
-                if (err) throw err
-                console.table(res);
+                console.log(`Added ${res.department_name} to the database`)
+
                 startPrompt();
-            }
-        )
-    })
-  }
+    });
+}
+    ;
 
 //INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)
 
