@@ -132,6 +132,77 @@ function addDepartment() {
 }
     ;
 
-//INSERT INTO role (title, salary, department_id) VALUES (?, ?, ?)
+//INSERT INTO role (name, salary, department_id) VALUES (?, ?, ?)
+function addRole() {
+    
+    inquirer.prompt([
+        {
+          name: "title",
+          type: "input",
+          message: "What Role would you like to add?"
+        },
+        {
+            name: "salary",
+            type: "input",
+            message: "Please set the salary for this role."
+        },
+        {
+            name: "department_id",
+            type: "list",
+            message: "What department does this role belong to?",
+            choices: [
+                1,
+                2,
+                3,
+                4,
+                5,
+            ]
+        }
+    ]).then(res =>  {
+        sql.createRole(res)
+            .then
+                
+            
+                console.log(`Added ${res.title} to the database`)
+
+                startPrompt();
+    });
+};
 
 //INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?) `
+//prompted to enter the employee’s first name, last name, role, and manager, and that employee is added to the database
+function addEmployee() {
+    
+    inquirer.prompt([
+        {
+          name: "first_name",
+          type: "input",
+          message: "Enter employee's first name."
+        },
+        {
+            name: "last_name",
+            type: "input",
+            message: "Enter employee's last name."
+        },
+        {
+            name: "department_id",
+            type: "list",
+            message: "What department does this role belong to?",
+            choices: [
+                1,
+                2,
+                3,
+                4,
+                5,
+            ]
+        }
+    ]).then(res =>  {
+        sql.createRole(res)
+            .then
+                
+            
+                console.log(`Added ${res.title} to the database`)
+
+                startPrompt();
+    });
+};
